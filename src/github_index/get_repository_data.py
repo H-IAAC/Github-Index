@@ -99,8 +99,9 @@ def get_repositoy_data(organization_name: str,
         repo["contributors"] = response_contributors.json()
 
         # README
+        repo_full_name = repo["full_name"]
         response_readme = http_get(
-            f"https://api.github.com/repos/{repo["full_name"]}/readme", session, token=token)
+            f"https://api.github.com/repos/{repo_full_name}/readme", session, token=token)
 
         if "download_url" in response_readme.json():
             download_url = response_readme.json()["download_url"]
