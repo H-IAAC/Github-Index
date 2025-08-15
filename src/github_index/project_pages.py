@@ -2,12 +2,17 @@ import glob
 import json
 import os
 import urllib
+from pathlib import Path
 from typing import Any, Callable
 
 import tqdm
 
 from github_index import Badge
 from github_index.badge import generate_badges
+
+
+def split_path(path):
+    return list(Path(path).parts)
 
 
 def get_repository_paths(data_path: str) -> list[str]:
@@ -104,7 +109,7 @@ def generate_readme(preamble: str, page_src_path: str, org_name: str) -> str:
         page_src_path, "repositories", "*", "*.md"), recursive=True)
     groups = {}
     for path in paths:
-        group = path.split("\\")[-2]
+        group = split_path(path)[-2]
 
         if group not in groups:
             groups[group] = []
