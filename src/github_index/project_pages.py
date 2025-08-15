@@ -79,7 +79,8 @@ def generate_problems_page(data_path: str, page_src_path: str) -> None:
         data = get_repository_data(data_path, repository_path)
 
         if not is_repository_valid(data):
-            page += f"## {data["repository"]["name"]}\n\n"
+            repository_name = data["repository"]["name"]
+            page += f"## {repository_name}\n\n"
 
             for name in ["metadata", "readme"]:
                 if len(data[name]["errors"]) > 0:

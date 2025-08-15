@@ -115,7 +115,7 @@ def get_repositoy_data(organization_name: str,
 
         # CFF
         response_cff = http_get(
-            f"https://api.github.com/repos/{repo["full_name"]}/contents/CITATION.cff", session, token=token)
+            f"https://api.github.com/repos/{repo_full_name}/contents/CITATION.cff", session, token=token)
 
         if response_cff.status_code == 404:
             cff = ""
